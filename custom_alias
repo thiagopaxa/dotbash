@@ -1,0 +1,3 @@
+alias bash_load='source ~/.bash_profile'
+
+alias s='subl'

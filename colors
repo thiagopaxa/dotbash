@@ -1,0 +1,13 @@
+function parse_git_dirty {
+    test "$(git diff HEAD --name-only  2>/dev/null 2>&1)" && echo " *"
+}
+
+function git_branch_name() {
+    git branch 2>/dev/null | grep -e '^*' | sed -E "s/^\* (.+)$/[\1] /"
+}
+
+function show_colored_git_branch_in_prompt() {
+    PS1="\[\e[1;34m\]\W \[\e[0;33m\]\$(git_branch_name)\[\e[1;34m\]> \[\e[m\]"
+}
+
+show_colored_git_branch_in_prompt
