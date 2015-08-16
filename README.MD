@@ -1,15 +1,16 @@
 # DOTBASH
 > .basic terminal settings
 
-You just have to clone the repo
-And run the script with source, that it'll do the rest
+Clone this repository, run the script and `source` the `.bash_profile`
 
 ```console
   git clone git@github.com:thiagopaxa/dotbash.git
 
   cd dotbash
 
-  source bash_profile
+  bash start.sh
+
+  source ~/.bash_profile
 ```
 
 That way every change in bash files is versioned
