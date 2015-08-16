@@ -1,13 +1,18 @@
 function parse_git_dirty {
     test "$(git diff HEAD --name-only  2>/dev/null 2>&1)" && echo " *"
 }
+function get_base_git() {
+    if [[ `git rev-parse --show-toplevel 2>/dev/null` ]]; then
+        basename `git rev-parse --show-toplevel 2>/dev/null`
+    fi
+}
 
 function git_branch_name() {
-    git branch 2>/dev/null | grep -e '^*' | sed -E "s/^\* (.+)$/[\1] /"
+    git branch 2>/dev/null | grep -e '^*' | sed -E "s/^\* (.+)$/[$(get_base_git)»\1] /"
 }
 
 function show_colored_git_branch_in_prompt() {
-    PS1="\[\e[1;34m\]\W \[\e[0;33m\]\$(git_branch_name)\[\e[1;34m\]> \[\e[m\]"
+    PS1="\[\033[1;33m\]\$(git_branch_name)\[\033[m\]\[\033[1;34m\]\W >\[\e[m\] "
 }
 
 show_colored_git_branch_in_prompt
