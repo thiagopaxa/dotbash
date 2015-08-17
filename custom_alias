@@ -7,3 +7,12 @@ alias cr='cd `git rev-parse --show-toplevel`'
 
 # reload everything
 alias bash_load='source ~/.bash_profile'
+
+# Kill all process with the given name
+# EX: kill_all chrome
+# EX: kill_all chro
+# all of them will kill every chrome instance running
+function pskill(){
+   kill -9 $(ps aux | grep $1 | awk '{print $2}')
+}
+alias kill_all=pskill
