@@ -13,6 +13,15 @@ alias bash_load='source ~/.bash_profile'
 # EX: kill_all chro
 # all of them will kill every chrome instance running
 function pskill(){
-   kill -9 $(ps aux | grep $1 | awk '{print $2}')
+  kill -9 $(ps aux | grep $1 | awk '{print $2}')
 }
 alias kill_all=pskill
+
+
+# alias to merge strategy
+# Ex: merge_theirs master
+# Ex: merge_theirs otherBranch
+merge_theirs() {
+  BRANCH=$1
+  git merge --strategy recursive -X theirs $BRANCH
+}
